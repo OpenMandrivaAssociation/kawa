@@ -1,19 +1,20 @@
-%define gcj_support 0
-%define build_free 1
-%define section free
-%bcond_without servlet
+%define gcj_support     1
+%define build_free      1
+%define section         free
+%bcond_without          servlet
 
 Name:           kawa
-Version:        1.8
-Release:        %mkrel 5
+Version:        1.9.1
+Release:        %mkrel 1
 Epoch:          0
 Summary:        Framework for implementing high-level and dynamic languages
 License:        GPL
 Group:          Development/Java
-#Vendor:         JPackage Project
-#Distribution:   JPackage
-Source0:        ftp://ftp.gnu.org/pub/gnu/kawa/kawa-1.8-src.tar.bz2
 URL:            http://www.gnu.org/software/kawa/index.html
+Source0:        ftp://ftp.gnu.org/pub/gnu/kawa/kawa-%{version}.tar.gz
+Source1:        ftp://ftp.gnu.org/pub/gnu/kawa/kawa-%{version}.tar.gz.sig
+Requires(post): info-install
+Requires(preun): info-install
 Requires:       jpackage-utils
 %if %with servlet
 Requires:       servletapi5
@@ -63,7 +64,7 @@ export JAR=%{jar}
 export JAVA=%{java}
 export JAVAC=%{javac}
 export JAVADOC=%{javadoc}
-%configure2_5x \
+%{configure2_5x} \
   --without-gcj \
 %if %with servlet
   --with-servlet=$(build-classpath servletapi5) \
@@ -87,18 +88,17 @@ export JAVADOC=%{javadoc}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall LIBTOOL=%{_bindir}/libtool
+%{makeinstall} LIBTOOL=%{_bindir}/libtool
 %if !%with servlet
 %{__rm} -f %{buildroot}%{_bindir}/cgi-servlet
 %endif
-%make JAVADOC_DIR=%{buildroot}%{_javadocdir}/%{name}-%{version} install-javadoc-html
+%{make} JAVADOC_DIR=%{buildroot}%{_javadocdir}/%{name}-%{version} install-javadoc-html
 
 # javadoc
-%{__ln_s} %{name}-%{version} %{buildroot}%{_javadocdir}/%{name} # ghost symlink
+%{__ln_s} %{name}-%{version} %{buildroot}%{_javadocdir}/%{name}
 
 %if %{gcj_support}
-RPM_OPT_FLAGS=`echo %{optflags} | %{__sed} 's|-O[0-9]*|-O0|'` \
-  %{_bindir}/aot-compile-rpm
+%{_bindir}/aot-compile-rpm
 %endif
 
 %clean
@@ -111,21 +111,14 @@ RPM_OPT_FLAGS=`echo %{optflags} | %{__sed} 's|-O[0-9]*|-O0|'` \
 %_install_info %{name}.info
 %_install_info %{name}-tour.info
 
-%postun
-%if %{gcj_support}
-%{clean_gcjdb}
-%endif
+%preun
 %_remove_install_info %{name}.info
 %_remove_install_info %{name}-tour.info
 
-%post javadoc
-%{__rm} -f %{_javadocdir}/%{name}
-%{__ln_s} %{name}-%{version} %{_javadocdir}/%{name}
-
-%postun javadoc
-if [ $1 -eq 0 ]; then
-  %{__rm} -f %{_javadocdir}/%{name}
-fi
+%if %{gcj_support}
+%postun
+%{clean_gcjdb}
+%endif
 
 %files
 %defattr(0644,root,root,0755)
@@ -149,4 +142,4 @@ fi
 %files javadoc
 %defattr(0644,root,root,0755)
 %doc %{_javadocdir}/%{name}-%{version}
-%ghost %doc %{_javadocdir}/%{name}
+%doc %{_javadocdir}/%{name}
