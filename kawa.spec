@@ -5,7 +5,7 @@
 
 Name:           kawa
 Version:        1.9.1
-Release:        %mkrel 1
+Release:        %mkrel 2
 Epoch:          0
 Summary:        Framework for implementing high-level and dynamic languages
 License:        GPL
@@ -19,14 +19,14 @@ Requires:       jpackage-utils
 %if %with servlet
 Requires:       servletapi5
 %endif
-Requires:       xml-commons-apis
+Requires:       xml-commons-jaxp-1.3-apis
 BuildRequires:  java-devel
 BuildRequires:  jpackage-utils
 BuildRequires:  libtool
 %if %with servlet
 BuildRequires:  servletapi5
 %endif
-BuildRequires:  xml-commons-apis
+BuildRequires:  xml-commons-jaxp-1.3-apis
 %if %{gcj_support}
 Requires(post): java-gcj-compat
 Requires(postun): java-gcj-compat
@@ -59,7 +59,7 @@ Javadoc for %{name}.
 %setup -q
 
 %build
-export CLASSPATH=$(build-classpath xml-commons-apis)
+export CLASSPATH=$(build-classpath xml-commons-jaxp-1.3-apis)
 export JAR=%{jar}
 export JAVA=%{java}
 export JAVAC=%{javac}
