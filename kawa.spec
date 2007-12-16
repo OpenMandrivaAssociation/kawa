@@ -5,7 +5,7 @@
 
 Name:           kawa
 Version:        1.9.1
-Release:        %mkrel 3
+Release:        %mkrel 4
 Epoch:          0
 Summary:        Framework for implementing high-level and dynamic languages
 License:        GPL
@@ -21,7 +21,7 @@ Requires:       servletapi5
 %endif
 Requires:       xml-commons-jaxp-1.3-apis
 BuildRequires:  java-devel
-BuildRequires:  jpackage-utils
+BuildRequires:  java-rpmbuild
 BuildRequires:  libtool
 %if %with servlet
 BuildRequires:  servletapi5
