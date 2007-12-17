@@ -30,7 +30,6 @@ BuildRequires:  xml-commons-jaxp-1.3-apis
 %if %{gcj_support}
 BuildRequires:  java-gcj-compat-devel
 %endif
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 
