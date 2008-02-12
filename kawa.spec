@@ -33,7 +33,6 @@ BuildRequires:  java-gcj-compat-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-
 Kawa is:
     * A framework written in Java for implementing high-level and
       dynamic languages, compiling them into Java bytecodes.
