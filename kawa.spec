@@ -5,7 +5,7 @@
 
 Name:           kawa
 Version:        1.9.1
-Release:        %mkrel 7
+Release:        %mkrel 8
 Epoch:          0
 Summary:        Framework for implementing high-level and dynamic languages
 License:        GPL
