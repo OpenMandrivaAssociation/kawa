@@ -5,7 +5,7 @@
 
 Name:           kawa
 Version:        1.9.1
-Release:        %mkrel 8
+Release:        9
 Epoch:          0
 Summary:        Framework for implementing high-level and dynamic languages
 License:        GPL
@@ -13,8 +13,6 @@ Group:          Development/Java
 URL:            http://www.gnu.org/software/kawa/index.html
 Source0:        ftp://ftp.gnu.org/pub/gnu/kawa/kawa-%{version}.tar.gz
 Source1:        ftp://ftp.gnu.org/pub/gnu/kawa/kawa-%{version}.tar.gz.sig
-Requires(post): info-install
-Requires(preun): info-install
 Requires:       jpackage-utils
 %if %with servlet
 Requires:       servletapi5
@@ -30,7 +28,6 @@ BuildRequires:  xml-commons-jaxp-1.3-apis
 %if %{gcj_support}
 BuildRequires:  java-gcj-compat-devel
 %endif
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Kawa is:
@@ -97,9 +94,6 @@ export JAVADOC=%{javadoc}
 %if %{gcj_support}
 %{_bindir}/aot-compile-rpm
 %endif
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %post
 %if %{gcj_support}
