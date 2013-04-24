@@ -108,9 +108,6 @@ export JAVADOC=%{javadoc}
 %_install_info %{name}.info
 %_install_info %{name}-tour.info
 
-%preun
-%_remove_install_info %{name}.info
-%_remove_install_info %{name}-tour.info
 
 %if %{gcj_support}
 %postun
