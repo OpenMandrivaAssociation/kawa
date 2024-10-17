@@ -10,7 +10,7 @@ Epoch:          0
 Summary:        Framework for implementing high-level and dynamic languages
 License:        GPL
 Group:          Development/Java
-URL:            http://www.gnu.org/software/kawa/index.html
+URL:            https://www.gnu.org/software/kawa/index.html
 Source0:        ftp://ftp.gnu.org/pub/gnu/kawa/kawa-%{version}.tar.gz
 Source1:        ftp://ftp.gnu.org/pub/gnu/kawa/kawa-%{version}.tar.gz.sig
 Requires:       jpackage-utils
