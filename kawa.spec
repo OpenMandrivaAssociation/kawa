@@ -18,6 +18,7 @@ Requires:       jpackage-utils
 Requires:       servletapi5
 %endif
 Requires:       xml-commons-jaxp-1.3-apis
+BuildRequires:	make
 BuildRequires:  java-devel
 BuildRequires:  java-rpmbuild
 BuildRequires:  libtool
